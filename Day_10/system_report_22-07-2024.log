@@ -1,0 +1,211 @@
+
+=== System Metrices ===
+--- CPU and Memory Usage ---
+CPU usage : 7.8%
+Memory Usage : 35.5769%
+
+--- Disk Usage ---
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.7G     0  7.7G   0% /dev
+tmpfs           1.6G  2.6M  1.6G   1% /run
+/dev/nvme0n1p1   94G   25G   65G  28% /
+tmpfs           7.7G  129M  7.6G   2% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/loop0      128K  128K     0 100% /snap/bare/5
+/dev/loop1       56M   56M     0 100% /snap/core18/2823
+/dev/loop2       75M   75M     0 100% /snap/core22/1380
+/dev/loop17      39M   39M     0 100% /snap/snapd/21759
+/dev/loop5      9.8M  9.8M     0 100% /snap/htop/4317
+/dev/loop9       28M   28M     0 100% /snap/terraform/711
+/dev/loop11      28M   28M     0 100% /snap/terraform/706
+/dev/loop16      55M   55M     0 100% /snap/snap-store/558
+/dev/loop18      64M   64M     0 100% /snap/core20/2264
+/dev/loop14      87M   87M     0 100% /snap/teams-for-linux/638
+/dev/loop7       75M   75M     0 100% /snap/core22/1122
+/dev/loop19      39M   39M     0 100% /snap/snapd/21465
+/dev/loop6      9.8M  9.8M     0 100% /snap/htop/4407
+/dev/loop8       64M   64M     0 100% /snap/core20/2318
+/dev/loop4       92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop3       67M   67M     0 100% /snap/core24/405
+/dev/loop13      66M   66M     0 100% /snap/gtk-common-themes/1519
+/dev/loop12      88M   88M     0 100% /snap/teams-for-linux/645
+/dev/loop20     311M  311M     0 100% /snap/code/163
+/dev/loop25     311M  311M     0 100% /snap/code/164
+/dev/loop23      84M   84M     0 100% /snap/outlook-for-linux/18
+/dev/loop24     350M  350M     0 100% /snap/gnome-3-38-2004/143
+/dev/loop26      56M   56M     0 100% /snap/core18/2829
+/dev/loop15      13M   13M     0 100% /snap/snap-store/1113
+/dev/loop21     165M  165M     0 100% /snap/gnome-3-28-1804/198
+/dev/loop22      67M   67M     0 100% /snap/core24/423
+/dev/loop27     249M  249M     0 100% /snap/gnome-3-38-2004/99
+/dev/loop10     506M  506M     0 100% /snap/gnome-42-2204/176
+/dev/nvme0n1p3  976M   44M  932M   5% /boot/efi
+/dev/nvme0n1p4  359G   62G  280G  19% /home
+tmpfs           1.6G   64K  1.6G   1% /run/user/1000
+
+--- Network Statistics ---
+Ip:
+    Forwarding: 1
+    482670 total packets received
+    0 forwarded
+    0 incoming packets discarded
+    482332 incoming packets delivered
+    470173 requests sent out
+    20 outgoing packets dropped
+    94 dropped because of missing route
+Icmp:
+    423 ICMP messages received
+    6 input ICMP message failed
+    ICMP input histogram:
+        destination unreachable: 423
+    425 ICMP messages sent
+    0 ICMP messages failed
+    ICMP output histogram:
+        destination unreachable: 425
+IcmpMsg:
+        InType3: 423
+        OutType3: 425
+Tcp:
+    23256 active connection openings
+    25 passive connection openings
+    481 failed connection attempts
+    531 connection resets received
+    21 connections established
+    357901 segments received
+    368945 segments sent out
+    501 segments retransmitted
+    43 bad segments received
+    2185 resets sent
+Udp:
+    145635 packets received
+    413 packets to unknown port received
+    0 packet receive errors
+    115204 packets sent
+    0 receive buffer errors
+    0 send buffer errors
+UdpLite:
+TcpExt:
+    1010 TCP sockets finished time wait in fast timer
+    1968 delayed acks sent
+    Quick ack mode was activated 203 times
+    102074 packet headers predicted
+    60930 acknowledgments not containing data payload received
+    15027 predicted acknowledgments
+    TCPSackRecovery: 12
+    Detected reordering 6 times using SACK
+    7 congestion windows recovered without slow start after partial ack
+    TCPLostRetransmit: 55
+    TCPSackFailures: 1
+    79 fast retransmits
+    TCPTimeouts: 290
+    TCPLossProbes: 228
+    TCPLossProbeRecovery: 12
+    TCPBacklogCoalesce: 1
+    TCPDSACKOldSent: 222
+    TCPDSACKOfoSent: 10
+    TCPDSACKRecv: 147
+    742 connections reset due to unexpected data
+    339 connections reset due to early user close
+    8 connections aborted due to timeout
+    TCPSACKDiscard: 11
+    TCPDSACKIgnoredOld: 2
+    TCPDSACKIgnoredNoUndo: 62
+    TCPSackShifted: 73
+    TCPSackMerged: 73
+    TCPSackShiftFallback: 34
+    TCPDeferAcceptDrop: 4
+    IPReversePathFilter: 6
+    TCPRcvCoalesce: 11806
+    TCPOFOQueue: 6158
+    TCPOFOMerge: 7
+    TCPChallengeACK: 40
+    TCPSYNChallenge: 43
+    TCPSpuriousRtxHostQueues: 13
+    TCPAutoCorking: 13274
+    TCPSynRetrans: 113
+    TCPOrigDataSent: 145144
+    TCPHystartDelayDetect: 6
+    TCPHystartDelayCwnd: 383
+    TCPACKSkippedChallenge: 4
+    TCPKeepAlive: 1915
+    TCPDelivered: 126165
+    TCPAckCompressed: 2305
+    TcpTimeoutRehash: 282
+    TcpDuplicateDataRehash: 1
+    TCPDSACKRecvSegs: 123
+    TCPDSACKIgnoredDubious: 24
+IpExt:
+    InNoRoutes: 8
+    InMcastPkts: 10533
+    OutMcastPkts: 216
+    InOctets: 235644528
+    OutOctets: 82687540
+    InMcastOctets: 1037543
+    OutMcastOctets: 22272
+    InNoECTPkts: 569172
+MPTcpExt:
+
+--- Top Processes ---
+    PID    PPID CMD                         %MEM %CPU
+      1       0 /sbin/init splash            0.0  0.0
+      2       0 [kthreadd]                   0.0  0.0
+      3       2 [rcu_gp]                     0.0  0.0
+      4       2 [rcu_par_gp]                 0.0  0.0
+--- Log Analysis ---
+Jul 10 10:08:23 AHMLPT2504 NetworkManager[949]: <warn>  [1720586303.0301] Error: failed to open /run/network/ifstate
+Jul 10 10:08:23 AHMLPT2504 gnome-session[1896]: gnome-session-binary[1896]: WARNING: Falling back to non-systemd startup procedure due to error: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:23 AHMLPT2504 gnome-session-binary[1896]: WARNING: Falling back to non-systemd startup procedure due to error: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:25 AHMLPT2504 gnome-shell[2050]: Error looking up permission: GDBus.Error:org.freedesktop.portal.Error.NotFound: No entry for geolocation
+Jul 10 10:08:25 AHMLPT2504 gsd-sharing[2677]: Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:25 AHMLPT2504 gsd-sharing[2677]: message repeated 3 times: [ Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1]
+Jul 10 10:08:26 AHMLPT2504 org.gnome.Shell.desktop[2941]: > Internal error:   Could not resolve keysym Invalid
+Jul 10 10:08:26 AHMLPT2504 org.gnome.Shell.desktop[2941]: Errors from xkbcomp are not fatal to the X server
+Jul 10 10:08:32 AHMLPT2504 gsd-sharing[2677]: Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:32 AHMLPT2504 gsd-sharing[2677]: message repeated 3 times: [ Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1]
+
+=== Health Checks ===
+--- Service Status ---
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Mon 2024-07-22 13:01:34 IST; 4h 38min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 1060 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 1130 (apache2)
+      Tasks: 55 (limit: 18787)
+     Memory: 8.2M
+     CGroup: /system.slice/apache2.service
+             ├─1130 /usr/sbin/apache2 -k start
+             ├─1134 /usr/sbin/apache2 -k start
+             └─1135 /usr/sbin/apache2 -k start
+
+Jul 22 13:01:34 AHMLPT2504 systemd[1]: Starting The Apache HTTP Server...
+Jul 22 13:01:34 AHMLPT2504 apachectl[1099]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Jul 22 13:01:34 AHMLPT2504 systemd[1]: Started The Apache HTTP Server.
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Mon 2024-07-22 13:01:34 IST; 4h 38min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 1060 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 1130 (apache2)
+      Tasks: 55 (limit: 18787)
+     Memory: 8.2M
+     CGroup: /system.slice/apache2.service
+             ├─1130 /usr/sbin/apache2 -k start
+             ├─1134 /usr/sbin/apache2 -k start
+             └─1135 /usr/sbin/apache2 -k start
+
+Jul 22 13:01:34 AHMLPT2504 systemd[1]: Starting The Apache HTTP Server...
+Jul 22 13:01:34 AHMLPT2504 apachectl[1099]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Jul 22 13:01:34 AHMLPT2504 systemd[1]: Started The Apache HTTP Server.
+
+--- Check Connectivity ---
+PING google.com (142.250.199.174) 56(84) bytes of data.
+64 bytes from bom07s37-in-f14.1e100.net (142.250.199.174): icmp_seq=1 ttl=118 time=14.9 ms
+64 bytes from bom07s37-in-f14.1e100.net (142.250.199.174): icmp_seq=2 ttl=118 time=15.7 ms
+64 bytes from bom07s37-in-f14.1e100.net (142.250.199.174): icmp_seq=3 ttl=118 time=16.0 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 14.917/15.549/16.047/0.471 ms
+

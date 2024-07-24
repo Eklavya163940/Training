@@ -1,0 +1,230 @@
+
+=== System Metrices ===
+--- CPU and Memory Usage ---
+CPU usage : 7.8%
+Memory Usage : 48.1364%
+
+--- Disk Usage ---
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.7G     0  7.7G   0% /dev
+tmpfs           1.6G  2.5M  1.6G   1% /run
+/dev/nvme0n1p1   94G   25G   64G  28% /
+tmpfs           7.7G  127M  7.6G   2% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/loop0      128K  128K     0 100% /snap/bare/5
+/dev/loop2       64M   64M     0 100% /snap/core20/2264
+/dev/loop1      311M  311M     0 100% /snap/code/163
+/dev/loop3       75M   75M     0 100% /snap/core22/1122
+/dev/loop4       64M   64M     0 100% /snap/core20/2318
+/dev/loop5       75M   75M     0 100% /snap/core22/1380
+/dev/loop7       56M   56M     0 100% /snap/core18/2823
+/dev/loop6      311M  311M     0 100% /snap/code/164
+/dev/loop18      84M   84M     0 100% /snap/outlook-for-linux/18
+/dev/loop10      66M   66M     0 100% /snap/gtk-common-themes/1519
+/dev/loop17      92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop25      39M   39M     0 100% /snap/snapd/21465
+/dev/loop24      39M   39M     0 100% /snap/snapd/21759
+/dev/loop21      13M   13M     0 100% /snap/snap-store/1113
+/dev/loop19      28M   28M     0 100% /snap/terraform/706
+/dev/loop9      165M  165M     0 100% /snap/gnome-3-28-1804/198
+/dev/loop23      28M   28M     0 100% /snap/terraform/711
+/dev/loop27      88M   88M     0 100% /snap/teams-for-linux/645
+/dev/loop26     9.8M  9.8M     0 100% /snap/htop/4317
+/dev/loop16     350M  350M     0 100% /snap/gnome-3-38-2004/143
+/dev/loop20      55M   55M     0 100% /snap/snap-store/558
+/dev/loop15      67M   67M     0 100% /snap/core24/423
+/dev/loop14     249M  249M     0 100% /snap/gnome-3-38-2004/99
+/dev/loop11     9.8M  9.8M     0 100% /snap/htop/4407
+/dev/loop13     506M  506M     0 100% /snap/gnome-42-2204/176
+/dev/loop12      67M   67M     0 100% /snap/core24/405
+/dev/loop8       56M   56M     0 100% /snap/core18/2829
+/dev/nvme0n1p3  976M   44M  932M   5% /boot/efi
+/dev/nvme0n1p4  359G   62G  279G  19% /home
+/dev/loop28      88M   88M     0 100% /snap/teams-for-linux/649
+tmpfs           1.6G   72K  1.6G   1% /run/user/1000
+
+--- Network Statistics ---
+Ip:
+    Forwarding: 1
+    1202137 total packets received
+    2 with invalid addresses
+    0 forwarded
+    0 incoming packets discarded
+    1202045 incoming packets delivered
+    945437 requests sent out
+    378 dropped because of missing route
+Icmp:
+    994 ICMP messages received
+    11 input ICMP message failed
+    ICMP input histogram:
+        destination unreachable: 991
+        echo replies: 3
+    1000 ICMP messages sent
+    0 ICMP messages failed
+    ICMP output histogram:
+        destination unreachable: 994
+        echo requests: 6
+IcmpMsg:
+        InType0: 3
+        InType3: 991
+        OutType3: 994
+        OutType8: 6
+Tcp:
+    33665 active connection openings
+    113 passive connection openings
+    653 failed connection attempts
+    1261 connection resets received
+    34 connections established
+    1047463 segments received
+    824451 segments sent out
+    2265 segments retransmitted
+    144 bad segments received
+    6859 resets sent
+Udp:
+    197091 packets received
+    972 packets to unknown port received
+    0 packet receive errors
+    165239 packets sent
+    0 receive buffer errors
+    0 send buffer errors
+    IgnoredMulti: 15
+UdpLite:
+TcpExt:
+    1 packets pruned from receive queue because of socket buffer overrun
+    3442 TCP sockets finished time wait in fast timer
+    33 packetes rejected in established connections because of timestamp
+    5691 delayed acks sent
+    2 delayed acks further delayed because of locked socket
+    Quick ack mode was activated 590 times
+    570239 packet headers predicted
+    95507 acknowledgments not containing data payload received
+    40010 predicted acknowledgments
+    TCPSackRecovery: 39
+    Detected reordering 136 times using SACK
+    2 congestion windows fully recovered without slow start
+    TCPDSACKUndo: 7
+    44 congestion windows recovered without slow start after partial ack
+    TCPLostRetransmit: 430
+    TCPSackFailures: 3
+    178 fast retransmits
+    1 retransmits in slow start
+    TCPTimeouts: 1183
+    TCPLossProbes: 1171
+    TCPLossProbeRecovery: 90
+    TCPBacklogCoalesce: 163
+    TCPDSACKOldSent: 716
+    TCPDSACKOfoSent: 29
+    TCPDSACKRecv: 885
+    TCPDSACKOfoRecv: 3
+    2551 connections reset due to unexpected data
+    868 connections reset due to early user close
+    119 connections aborted due to timeout
+    3 times unable to send RST due to no memory
+    TCPSACKDiscard: 8
+    TCPDSACKIgnoredOld: 2
+    TCPDSACKIgnoredNoUndo: 360
+    TCPSpuriousRTOs: 1
+    TCPSackShifted: 184
+    TCPSackMerged: 222
+    TCPSackShiftFallback: 279
+    IPReversePathFilter: 1
+    TCPRcvCoalesce: 100248
+    TCPOFOQueue: 78610
+    TCPOFOMerge: 27
+    TCPChallengeACK: 146
+    TCPSYNChallenge: 144
+    TCPSpuriousRtxHostQueues: 24
+    TCPAutoCorking: 19883
+    TCPFromZeroWindowAdv: 1
+    TCPToZeroWindowAdv: 1
+    TCPWantZeroWindowAdv: 4
+    TCPSynRetrans: 390
+    TCPOrigDataSent: 237584
+    TCPHystartDelayDetect: 20
+    TCPHystartDelayCwnd: 823
+    TCPACKSkippedPAWS: 12
+    TCPACKSkippedSeq: 4
+    TCPKeepAlive: 5003
+    TCPDelivered: 216995
+    TCPAckCompressed: 27756
+    TcpTimeoutRehash: 1105
+    TcpDuplicateDataRehash: 11
+    TCPDSACKRecvSegs: 738
+    TCPDSACKIgnoredDubious: 150
+IpExt:
+    InNoRoutes: 6
+    InMcastPkts: 11697
+    OutMcastPkts: 314
+    InBcastPkts: 15
+    OutBcastPkts: 15
+    InOctets: 1348241599
+    OutOctets: 150268863
+    InMcastOctets: 1580319
+    OutMcastOctets: 38422
+    InBcastOctets: 1170
+    OutBcastOctets: 1170
+    InNoECTPkts: 1539904
+MPTcpExt:
+
+--- Top Processes ---
+    PID    PPID CMD                         %MEM %CPU
+      1       0 /sbin/init splash            0.0  0.1
+      2       0 [kthreadd]                   0.0  0.0
+      3       2 [rcu_gp]                     0.0  0.0
+      4       2 [rcu_par_gp]                 0.0  0.0
+--- Log Analysis ---
+Jul 10 10:08:23 AHMLPT2504 NetworkManager[949]: <warn>  [1720586303.0301] Error: failed to open /run/network/ifstate
+Jul 10 10:08:23 AHMLPT2504 gnome-session[1896]: gnome-session-binary[1896]: WARNING: Falling back to non-systemd startup procedure due to error: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:23 AHMLPT2504 gnome-session-binary[1896]: WARNING: Falling back to non-systemd startup procedure due to error: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:25 AHMLPT2504 gnome-shell[2050]: Error looking up permission: GDBus.Error:org.freedesktop.portal.Error.NotFound: No entry for geolocation
+Jul 10 10:08:25 AHMLPT2504 gsd-sharing[2677]: Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:25 AHMLPT2504 gsd-sharing[2677]: message repeated 3 times: [ Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1]
+Jul 10 10:08:26 AHMLPT2504 org.gnome.Shell.desktop[2941]: > Internal error:   Could not resolve keysym Invalid
+Jul 10 10:08:26 AHMLPT2504 org.gnome.Shell.desktop[2941]: Errors from xkbcomp are not fatal to the X server
+Jul 10 10:08:32 AHMLPT2504 gsd-sharing[2677]: Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+Jul 10 10:08:32 AHMLPT2504 gsd-sharing[2677]: message repeated 3 times: [ Failed to StopUnit service: GDBus.Error:org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1]
+
+=== Health Checks ===
+--- Service Status ---
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-07-23 10:16:29 IST; 5h 51min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 1135 (apache2)
+      Tasks: 55 (limit: 18787)
+     Memory: 7.3M
+     CGroup: /system.slice/apache2.service
+             ├─1135 /usr/sbin/apache2 -k start
+             ├─1136 /usr/sbin/apache2 -k start
+             └─1137 /usr/sbin/apache2 -k start
+
+Jul 23 10:16:29 AHMLPT2504 systemd[1]: Starting The Apache HTTP Server...
+Jul 23 10:16:29 AHMLPT2504 apachectl[1091]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Jul 23 10:16:29 AHMLPT2504 systemd[1]: Started The Apache HTTP Server.
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-07-23 10:16:29 IST; 5h 51min ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 1135 (apache2)
+      Tasks: 55 (limit: 18787)
+     Memory: 7.3M
+     CGroup: /system.slice/apache2.service
+             ├─1135 /usr/sbin/apache2 -k start
+             ├─1136 /usr/sbin/apache2 -k start
+             └─1137 /usr/sbin/apache2 -k start
+
+Jul 23 10:16:29 AHMLPT2504 systemd[1]: Starting The Apache HTTP Server...
+Jul 23 10:16:29 AHMLPT2504 apachectl[1091]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Jul 23 10:16:29 AHMLPT2504 systemd[1]: Started The Apache HTTP Server.
+
+--- Check Connectivity ---
+PING google.com (142.250.199.142) 56(84) bytes of data.
+64 bytes from bom07s36-in-f14.1e100.net (142.250.199.142): icmp_seq=1 ttl=119 time=21.9 ms
+64 bytes from bom07s36-in-f14.1e100.net (142.250.199.142): icmp_seq=2 ttl=119 time=22.5 ms
+64 bytes from bom07s36-in-f14.1e100.net (142.250.199.142): icmp_seq=3 ttl=119 time=20.7 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 20.655/21.663/22.466/0.753 ms
+
