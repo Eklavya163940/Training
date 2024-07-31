@@ -67,4 +67,3 @@ pipeline{
 
 ![alt text](image-2.png)
 
-- Deploy the Container: The pipeline should deploy a container using the pushed Docker image.
