@@ -1,7 +1,6 @@
 ---
 - hosts: all
   tasks:
-  
     - name:
       copy: 
         src: index.html.j2
