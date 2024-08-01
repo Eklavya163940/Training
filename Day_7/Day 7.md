@@ -57,37 +57,31 @@ npm install express body-parser
 
 
 
-**Create app.js**:
-
+Create `app.js`:
+```javascript
 const express = require('express');
-
 const bodyParser = require('body-parser');
-
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-
-`  `res.send('Hello, World!');
-
+  res.send('Hello, World!');
 });
 
 app.listen(PORT, () => {
-
-`  `console.log(`Server is running on port ${PORT}`);
-
+  console.log(`Server is running on port ${PORT}`);
 });
+```
 
-**Update package.json** to include a start script:
 
+Update `package.json` to include a start script:
+```json
 "scripts": {
-
-`  `"start": "node app.js"
-
+  "start": "node app.js"
 }
+```
 
 #### <a name="_cv05tu9scd20"></a>**2.2 Commit the Node.js Application**
 **Add and commit changes**:
@@ -100,33 +94,29 @@ git commit -m "Add Node.js application code"
 #### <a name="_i39r92qry0mk"></a>**3.1 Create a Dockerfile**
 **Add Dockerfile**:
 
-\# Use official Node.js image
-
+Add `Dockerfile`:
+```Dockerfile
+# Use official Node.js image
 FROM node:18
 
-\# Set the working directory
-
+# Set the working directory
 WORKDIR /usr/src/app
 
-\# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-COPY package\*.json ./
-
-\# Install dependencies
-
+# Install dependencies
 RUN npm install
 
-\# Copy the rest of the application code
-
+# Copy the rest of the application code
 COPY . .
 
-\# Expose the port on which the app runs
-
+# Expose the port on which the app runs
 EXPOSE 3000
 
-\# Command to run the application
-
+# Command to run the application
 CMD [ "npm", "start" ]
+```
 
 **Create a .dockerignore file**:
 
@@ -136,17 +126,14 @@ node\_modules
 #### <a name="_ihjkdpgnel8s"></a>**3.2 Create docker-compose.yml (optional for local testing)**
 **Add docker-compose.yml**:
 
+```yaml
 version: '3'
-
 services:
-
-`  `app:
-
-`    `build: .
-
-`    `ports:
-
-`      `- "3000:3000"
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+```
 
 **Add and commit changes**:
 
@@ -189,65 +176,40 @@ git commit -m "Build and push Docker image"
 **Create kubernetes/deployment.yaml**:
 
 
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-`  `name: nodejs-app-deployment
-
+  name: nodejs-app-deployment
 spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - name: nodejs-app
+        image: your-dockerhub-username/nodejs-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: PORT
+        - name: NODE_ENV
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: NODE_ENV
+```
 
-`  `replicas: 2
 
-`  `selector:
-
-`    `matchLabels:
-
-`      `app: nodejs-app
-
-`  `template:
-
-`    `metadata:
-
-`      `labels:
-
-`        `app: nodejs-app
-
-`    `spec:
-
-`      `containers:
-
-`      `- name: nodejs-app
-
-`        `image: your-dockerhub-username/nodejs-app:latest
-
-`        `ports:
-
-`        `- containerPort: 3000
-
-`        `env:
-
-`        `- name: PORT
-
-`          `valueFrom:
-
-`            `configMapKeyRef:
-
-`              `name: app-config
-
-`              `key: PORT
-
-`        `- name: NODE\_ENV
-
-`          `valueFrom:
-
-`            `secretKeyRef:
-
-`              `name: app-secrets
-
-`              `key: NODE\_ENV
 #### <a name="_64upslle4d4b"></a>**5.2 Create ConfigMap and Secret**
 **Create kubernetes/configmap.yaml**:
 
