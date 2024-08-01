@@ -293,27 +293,19 @@ kubectl apply -f kubernetes/hpa.yaml
 #### <a name="_9gh7fo4a7ayk"></a>**6.2 Create Vertical Pod Autoscaler**
 **Create kubernetes/vpa.yaml**:
 
+```yaml
 apiVersion: autoscaling.k8s.io/v1beta2
-
 kind: VerticalPodAutoscaler
-
 metadata:
-
-`  `name: nodejs-app-vpa
-
+  name: nodejs-app-vpa
 spec:
-
-`  `targetRef:
-
-`    `apiVersion: apps/v1
-
-`    `kind: Deployment
-
-`    `name: nodejs-app-deployment
-
-`  `updatePolicy:
-
-`    `updateMode: "Auto"
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodejs-app-deployment
+  updatePolicy:
+    updateMode: "Auto"
+```
 
 **Apply the VPA**:
 
@@ -444,59 +436,44 @@ npm install express redis body-parser
 
 #### <a name="_64um16vblaq"></a>**app.js**
 
+```javascript
 const express = require('express');
-
 const bodyParser = require('body-parser');
-
 const redis = require('redis');
-
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
 // Connect to Redis
-
 const redisClient = redis.createClient({
-
-`  `url: `redis://${process.env.REDIS\_HOST}:${process.env.REDIS\_PORT}`
-
+  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
 });
-
 redisClient.on('error', (err) => console.error('Redis Client Error', err));
 
 app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
-
-`  `const visits = await redisClient.get('visits');
-
-`  `if (visits) {
-
-`    `await redisClient.set('visits', parseInt(visits) + 1);
-
-`  `} else {
-
-`    `await redisClient.set('visits', 1);
-
-`  `}
-
-`  `res.send(`Hello, World! You are visitor number ${visits || 1}`);
-
+  const visits = await redisClient.get('visits');
+  if (visits) {
+    await redisClient.set('visits', parseInt(visits) + 1);
+  } else {
+    await redisClient.set('visits', 1);
+  }
+  res.send(`Hello, World! You are visitor number ${visits || 1}`);
 });
 
 app.listen(PORT, () => {
-
-`  `console.log(`Server is running on port ${PORT}`);
-
+  console.log(`Server is running on port ${PORT}`);
 });
+```
 
 #### <a name="_d1ohjp7vceaq"></a>**Dockerfile**
 
+```Dockerfile
 FROM node:18
 
 WORKDIR /usr/src/app
 
-COPY package\*.json ./
+COPY package*.json ./
 
 RUN npm install
 
@@ -505,12 +482,16 @@ COPY . .
 EXPOSE 3000
 
 CMD ["npm", "start"]
+```
 
-#### <a name="_j1gsoihkvomg"></a>**.dockerignore**
+### `.dockerignore`
 
-node\_modules
+This file contains the Docker ignore file:
 
+```
+node_modules
 .npm
+```
 
 
 
