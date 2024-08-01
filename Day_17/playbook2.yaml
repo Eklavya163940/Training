@@ -1,0 +1,92 @@
+---
+- name: Deploy and Configure PostgreSQL Database Server
+  hosts: db_server
+  become: yes
+  vars:
+    postgres_user: your_db_user
+    postgres_password: your_db_password
+    postgres_db: your_db_name
+    backup_dir: /var/backups/postgresql
+
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+
+    - name: Install PostgreSQL contrib
+      apt:
+        name: postgresql-contrib
+        state: present
+
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Set PostgreSQL password for user postgres
+      become_user: postgres
+      shell: psql -c "ALTER USER postgres PASSWORD '{{ postgres_password }}';"
+
+    - name: Create PostgreSQL database
+      become_user: postgres
+      postgresql_db:
+        name: "{{ postgres_db }}"
+        encoding: 'UTF-8'
+        lc_collate: 'en_US.UTF-8'
+        lc_ctype: 'en_US.UTF-8'
+        template: template0
+
+    - name: Create PostgreSQL user
+      become_user: postgres
+      postgresql_user:
+        name: "{{ postgres_user }}"
+        password: "{{ postgres_password }}"
+        priv: "ALL"
+
+    - name: Create pg_hba.conf from template
+      template:
+        src: templates/pg_hba.conf.j2
+        dest: /etc/postgresql/12/main/pg_hba.conf
+        mode: '0644'
+        owner: postgres
+        group: postgres
+      notify:
+        - Restart PostgreSQL
+
+    - name: Ensure backup directory exists
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+        owner: postgres
+        group: postgres
+        mode: '0755'
+
+    - name: Copy backup script
+      copy:
+        src: scripts/backup.sh
+        dest: /usr/local/bin/backup.sh
+        mode: '0755'
+        owner: postgres
+        group: postgres
+
+    - name: Create cron job for database backup
+      cron:
+        name: "PostgreSQL Backup"
+        minute: "0"
+        hour: "2"
+        job: "/usr/local/bin/backup.sh > /dev/null 2>&1"
+        user: postgres
+
+  handlers:
+    - name: Restart PostgreSQL
+      service:
+        name: postgresql
+        state: restarted
+ 
