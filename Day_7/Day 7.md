@@ -497,9 +497,14 @@ node_modules
 
 **1. Build and push Docker image:**
 
-`   `docker build -t your-dockerhub-username/nodejs-advanced-app:latest .
 
-`   `docker push your-dockerhub-username/nodejs-advanced-app:latest
+   ```bash
+   docker build -t your-dockerhub-username/nodejs-advanced-app:latest .
+   ```
+
+ ```bash
+   docker push your-dockerhub-username/nodejs-advanced-app:latest
+   ```
 
 
 ![alt text](image-12.png)
@@ -525,360 +530,216 @@ minikube service nodejs-advanced-app-service --url
 
 Create `kubernetes/deployment.yaml` to deploy the Node.js application with Redis dependency:
 
-\```yaml
-
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-`  `name: nodejs-advanced-app-deployment
-
+  name: nodejs-advanced-app-deployment
 spec:
-
-`  `replicas: 2
-
-`  `selector:
-
-`    `matchLabels:
-
-`      `app: nodejs-advanced-app
-
-`  `template:
-
-`    `metadata:
-
-`      `labels:
-
-`        `app: nodejs-advanced-app
-
-`    `spec:
-
-`      `containers:
-
-`      `- name: nodejs-advanced-app
-
-`        `image: your-dockerhub-username/nodejs-advanced-app:latest
-
-`        `ports:
-
-`        `- containerPort: 3000
-
-`        `env:
-
-`        `- name: PORT
-
-`          `valueFrom:
-
-`            `configMapKeyRef:
-
-`              `name: app-config
-
-`              `key: PORT
-
-`        `- name: REDIS\_HOST
-
-`          `valueFrom:
-
-`            `configMapKeyRef:
-
-`              `name: redis-config
-
-`              `key: REDIS\_HOST
-
-`        `- name: REDIS\_PORT
-
-`          `valueFrom:
-
-`            `configMapKeyRef:
-
-`              `name: redis-config
-
-`              `key: REDIS\_PORT
-
-`        `- name: NODE\_ENV
-
-`          `valueFrom:
-
-`            `secretKeyRef:
-
-`              `name: app-secrets
-
-`              `key: NODE\_ENV
-
-`      `- name: redis
-
-`        `image: redis:latest
-
-`        `ports:
-
-`        `- containerPort: 6379
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-advanced-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-advanced-app
+    spec:
+      containers:
+      - name: nodejs-advanced-app
+        image: your-dockerhub-username/nodejs-advanced-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: PORT
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: REDIS_PORT
+        - name: NODE_ENV
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: NODE_ENV
+      - name: redis
+        image: redis:latest
+        ports:
+        - containerPort: 6379
+```
 
 ### <a name="_4vjoho8wkva4"></a>**2.2 ConfigMap for Application and Redis**
 Create kubernetes/configmap.yaml to manage application and Redis configurations:
 
+```yaml
 apiVersion: v1
-
 kind: ConfigMap
-
 metadata:
-
-`  `name: app-config
-
+  name: app-config
 data:
-
-`  `PORT: "3000"
-
-\---
-
+  PORT: "3000"
+---
 apiVersion: v1
-
 kind: ConfigMap
-
 metadata:
-
-`  `name: redis-config
-
+  name: redis-config
 data:
-
-`  `REDIS\_HOST: "redis"
-
-`  `REDIS\_PORT: "6379"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+```
 
 ### <a name="_v7wcbxy0g4vw"></a>**2.3 Secret for Sensitive Data**
 Create kubernetes/secret.yaml to manage sensitive environment variables:
 
+```yaml
 apiVersion: v1
-
 kind: Secret
-
 metadata:
-
-`  `name: app-secrets
-
+  name: app-secrets
 type: Opaque
-
 data:
-
-`  `NODE\_ENV: cHJvZHVjdGlvbg== # Base64 encoded value for "production"
+  NODE_ENV: cHJvZHVjdGlvbg== # Base64 encoded value for "production"
+```
 
 ### <a name="_7hsqbrtggnwk"></a>**2.4 Service Configuration**
 Create kubernetes/service.yaml to expose the Node.js application:
 
+```yaml
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
-`  `name: nodejs-advanced-app-service
-
+  name: nodejs-advanced-app-service
 spec:
-
-`  `selector:
-
-`    `app: nodejs-advanced-app
-
-`  `ports:
-
-`  `- protocol: TCP
-
-`    `port: 80
-
-`    `targetPort: 3000
-
-`  `type: LoadBalancer
-
+  selector:
+    app: nodejs-advanced-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer
+```
 ### <a name="_a91z7qmd5n8o"></a>**2.5 Horizontal Pod Autoscaler with Scale-Up and Scale-Down Policies**
 Create kubernetes/hpa.yaml to manage autoscaling:
 
+```yaml
 apiVersion: autoscaling/v2beta2
-
 kind: HorizontalPodAutoscaler
-
 metadata:
-
-`  `name: nodejs-advanced-app-hpa
-
+  name: nodejs-advanced-app-hpa
 spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodejs-advanced-app-deployment
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 70
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 30
+      selectPolicy: Max
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 30
+      - type: Resource
+        resource: cpu
+        value: 2
+        periodSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 30
+      selectPolicy: Min
+      policies:
+      - type: Pods
+        value: 1
+        periodSeconds: 30
+      - type: Resource
+        resource: memory
+        value: 1
+        periodSeconds: 30
+```
 
-`  `scaleTargetRef:
-
-`    `apiVersion: apps/v1
-
-`    `kind: Deployment
-
-`    `name: nodejs-advanced-app-deployment
-
-`  `minReplicas: 2
-
-`  `maxReplicas: 5
-
-`  `metrics:
-
-`  `- type: Resource
-
-`    `resource:
-
-`      `name: cpu
-
-`      `target:
-
-`        `type: Utilization
-
-`        `averageUtilization: 50
-
-`  `- type: Resource
-
-`    `resource:
-
-`      `name: memory
-
-`      `target:
-
-`        `type: Utilization
-
-`        `averageUtilization: 70
-
-`  `behavior:
-
-`    `scaleUp:
-
-`      `stabilizationWindowSeconds: 30
-
-`      `selectPolicy: Max
-
-`      `policies:
-
-`      `- type: Pods
-
-`        `value: 2
-
-`        `periodSeconds: 30
-
-`      `- type: Resource
-
-`        `resource: cpu
-
-`        `value: 2
-
-`        `periodSeconds: 30
-
-`    `scaleDown:
-
-`      `stabilizationWindowSeconds: 30
-
-`      `selectPolicy: Min
-
-`      `policies:
-
-`      `- type: Pods
-
-`        `value: 1
-
-`        `periodSeconds: 30
-
-`      `- type: Resource
-
-`        `resource: memory
-
-`        `value: 1
-
-`        `periodSeconds: 30
 
 ### <a name="_bk3rvvcztlh3"></a>**2.6 Vertical Pod Autoscaler Configuration**
 Create kubernetes/vpa.yaml to manage vertical scaling:
 
+```yaml
 apiVersion: autoscaling.k8s.io/v1beta2
-
 kind: VerticalPodAutoscaler
-
 metadata:
-
-`  `name: nodejs-advanced-app-vpa
-
+  name: nodejs-advanced-app-vpa
 spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodejs-advanced-app-deployment
+  updatePolicy:
+    updateMode: "Auto"
+```
 
-`  `targetRef:
-
-`    `apiVersion: apps/v1
-
-`    `kind: Deployment
-
-`    `name: nodejs-advanced-app-deployment
-
-`  `updatePolicy:
-
-`    `updateMode: "Auto"
 
 ### <a name="_ytlxgs8gjo9x"></a>**2.7 Redis Deployment**
 Add a Redis deployment configuration to kubernetes/redis-deployment.yaml:
 
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-`  `name: redis-deployment
-
+  name: redis-deployment
 spec:
-
-`  `replicas: 1
-
-`  `selector:
-
-`    `matchLabels:
-
-`      `app: redis
-
-`  `template:
-
-`    `metadata:
-
-`      `labels:
-
-`        `app: redis
-
-`    `spec:
-
-`      `containers:
-
-`      `- name: redis
-
-`        `image: redis:latest
-
-`        `ports:
-
-`        `- containerPort: 6379
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:latest
+        ports:
+        - containerPort: 6379
+```
 
 Add Redis service configuration to kubernetes/redis-service.yaml:
 
+```yaml
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
-`  `name: redis-service
-
+  name: redis-service
 spec:
-
-`  `selector:
-
-`    `app: redis
-
-`  `ports:
-
-`  `- protocol: TCP
-
-`    `port: 6379
-
-`    `targetPort: 6379
-
-`  `type: ClusterIP
-
+  selector:
+    app: redis
+  ports:
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379
+  type: ClusterIP
+```
 ### <a name="_b967huvmhbw1"></a>**2.8 Apply Kubernetes Configurations**
 Apply all configurations to your Minikube cluster:
 
