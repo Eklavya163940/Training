@@ -173,4 +173,4 @@ gzip ${BACKUP_FILE}
 find ${BACKUP_DIR} -type f -mtime +7 -delete
 ```
 
-
+![alt text](image-1.png)
