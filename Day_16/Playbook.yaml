@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: yes  
+  tasks:
+    - name: Task to Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    
+    - name: Print hostname
+      debug:
+        msg: "{{ inventory_hostname }}"
+    
+    - name: Template configuration file
+      ansible.builtin.template:
+        src: index.j2
+        dest: /var/www/html/index.html
+      notify:
+        - Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
