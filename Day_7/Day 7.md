@@ -213,33 +213,26 @@ spec:
 #### <a name="_64upslle4d4b"></a>**5.2 Create ConfigMap and Secret**
 **Create kubernetes/configmap.yaml**:
 
+```yaml
 apiVersion: v1
-
 kind: ConfigMap
-
 metadata:
-
-`  `name: app-config
-
+  name: app-config
 data:
-
-`  `PORT: "3000"
+  PORT: "3000"
+```
 
 **Create kubernetes/secret.yaml**:
 
+```yaml
 apiVersion: v1
-
 kind: Secret
-
 metadata:
-
-`  `name: app-secrets
-
+  name: app-secrets
 type: Opaque
-
 data:
-
-`  `NODE\_ENV: cHJvZHVjdGlvbmFs # Base64 encoded value for "production"
+  NODE_ENV: cHJvZHVjdGlvbmFs # Base64 encoded value for "production"
+```
 
 **Add and commit Kubernetes configurations**:
 
@@ -267,41 +260,26 @@ kubectl apply -f kubernetes/deployment.yaml
 #### <a name="_yqu6af6rp6do"></a>**6.1 Create Horizontal Pod Autoscaler**
 **Create kubernetes/hpa.yaml**:
 
+```yaml
 apiVersion: autoscaling/v2beta2
-
 kind: HorizontalPodAutoscaler
-
 metadata:
-
-`  `name: nodejs-app-hpa
-
+  name: nodejs-app-hpa
 spec:
-
-`  `scaleTargetRef:
-
-`    `apiVersion: apps/v1
-
-`    `kind: Deployment
-
-`    `name: nodejs-app-deployment
-
-`  `minReplicas: 2
-
-`  `maxReplicas: 5
-
-`  `metrics:
-
-`  `- type: Resource
-
-`    `resource:
-
-`      `name: cpu
-
-`      `target:
-
-`        `type: Utilization
-
-`        `averageUtilization: 50
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodejs-app-deployment
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+```
 
 **Apply the HPA**:
 
