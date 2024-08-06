@@ -24,8 +24,8 @@ def get_inventory():
         }
     }
     
-    ssh_key_file = 'ansible-worker.pem'  # Update to your SSH key file
-    ssh_user = 'ubuntu'  # Update to your SSH user
+    ssh_key_file = 'ansible-worker.pem'  
+    ssh_user = 'ubuntu'  
     
     for reservation in response['Reservations']:
         for instance in reservation['Instances']:
