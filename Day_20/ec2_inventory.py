@@ -11,7 +11,7 @@ def serialize(obj):
     raise TypeError(f"Type {obj.__class__.__name__} not serializable")
 
 def get_inventory():
-    ec2 = boto3.client('ec2', region_name='us-east-2')  # Update to your region
+    ec2 = boto3.client('ec2', region_name='us-east-2')  
     response = ec2.describe_instances(Filters=[{'Name': 'tag:Role', 'Values': ['webserver']}])
     
     inventory = {
