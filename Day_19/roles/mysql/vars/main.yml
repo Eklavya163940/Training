@@ -1,0 +1,9 @@
+---
+db_name: "my_database"
+db_user: "my_user"
+db_password: "user123"
+pkgs:
+  - mysql-server
+  - mysql-client
+  - python3-mysqldb
+  - libmysqlclient-dev

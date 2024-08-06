@@ -1,0 +1,13 @@
+---
+- name: Copy application files to web root
+  copy:
+    src: index.php
+    dest: "{{ document_root }}/index.php"
+
+- name: Ensure the web root directory exists
+  file:
+    path: "{{ document_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'

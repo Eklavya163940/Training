@@ -1,0 +1,31 @@
+---
+- name: Install MySQL
+  apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+
+- name: Start MySQL service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: Create MySQL database
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+
+- name: Create MySQL user
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: "{{ db_name }}.*:ALL"
+    state: present
+
+- name: Ensure MySQL configuration is in place
+  template:
+    src: my.cnf.j2
+    dest: /etc/mysql/my.cnf
+  notify:
+    - Restart MySQL
