@@ -1,7 +1,8 @@
 ---
-- name: This is main playbook
+- name: Deploy Three-Tier Web Application
   hosts: all
-  become: true
-  become_method: sudo
+  become: yes
   roles:
+    - mysql
+    - nodejs
     - nginx
