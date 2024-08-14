@@ -1,0 +1,13 @@
+Error: Unable to rotate log - syslog.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-0000000000043b96-00061d81b1f638b4.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-000000000014affd-00061efe455872ef.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-00000000000a8635-00061e0de1688dee.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-0000000000086e08-00061de8a797340b.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-000000000010a994-00061e9c2fbf4ae1.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-000000000012a959-00061eb1a7ecf030.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-000000000002215f-00061d5d0e59e0a5.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-00000000000c8e1c-00061e25d1e9a936.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-0000000000065af8-00061dd2d48bc5eb.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-00000000000ea89d-00061e877b6d23a2.journal.1.1.1
+Error: Unable to rotate log - system@533b1693d9084cb8bafb18981962f5a9-0000000000000001-00061d4256883586.journal.1.1.1
+Error: Unable to rotate log - system.journal.1.1.1

@@ -5,3 +5,4 @@
     - name: Print hostname
       debug:
         msg: "Host {{ inventory_hostname }} with IP {{ ansible_host }}"
+  

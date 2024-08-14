@@ -4,4 +4,10 @@ package*.json
 venv
 tls*
 *.pem
-*.ini
+aws
+ansible
+.venv
+awscliv2.zip
+node_exporter*
+prometheus*
+alertmanager
