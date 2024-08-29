@@ -10,8 +10,9 @@ receivers:
       - url: 'http://127.0.0.1:5001/'
   - name: admin
     slack_configs:
-    - channel: "#random"
-      api_url: "https://hooks.slack.com/services/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"
+    - channel: "#prometheus"
+      api_url: "https://hooks.slack.com/services/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"
+
  
 inhibit_rules:
   - source_match:
