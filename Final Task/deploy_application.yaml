@@ -1,0 +1,23 @@
+---
+- name: Deploy Application to Kubernetes
+  hosts: kubernetes_master
+  become: yes
+  tasks:
+    - name: Install Helm
+      get_url:
+        url: https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
+        dest: /tmp/helm.tar.gz
+
+    - name: Extract Helm
+      unarchive:
+        src: /tmp/helm.tar.gz
+        dest: /usr/local/bin/
+        remote_src: yes
+
+    - name: Create Helm chart for application
+      template:
+        src: helm_chart/templates/deployment.yml
+        dest: /tmp/deployment.yml
+
+    - name: Deploy application using Helm
+      command: helm install my-ecommerce-app /tmp/deployment.yml
