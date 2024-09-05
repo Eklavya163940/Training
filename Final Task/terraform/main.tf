@@ -9,7 +9,7 @@ module "ec2_instance_master" {
   key_name        = "eklavya-day35"
   instance_name  = "eklavya-k8s-master"
   security_groups = ["sg-06f4ab19972912b2d"]
-  subnet_id       = "subnet-0907443228156eee5"  # Replace with your subnet ID
+  subnet_id       = "subnet-0907443228156eee5"  
 }
 
 module "ec2_instance_worker" {
@@ -19,12 +19,12 @@ module "ec2_instance_worker" {
   key_name        = "eklavya-day35"
   instance_name  = "eklaya-k8s-worker"
   security_groups = ["sg-06f4ab19972912b2d"]
-  subnet_id       = "subnet-0907443228156eee5"  # Replace with your subnet ID
+  subnet_id       = "subnet-0907443228156eee5"  
   count          = 1
 }
 
 module "s3_bucket" {
-  source = "./modules/s3"  # Path to your S3 module
+  source = "./modules/s3"  
 
   bucket_prefix = "eklavya-s3-bucket"
   tags = {
@@ -40,7 +40,7 @@ module "s3_bucket" {
     
   ]
 
-  # Enable public read access
+  
   enable_public_read = true
 }
 

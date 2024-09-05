@@ -8,7 +8,7 @@ resource "aws_instance" "this" {
     Name = var.instance_name
   }
 
-  vpc_security_group_ids = var.security_groups  # For VPC-based security groups
+  vpc_security_group_ids = var.security_groups  
 
   user_data = <<-EOF
                 #!/bin/bash
@@ -19,7 +19,7 @@ resource "aws_instance" "this" {
                 EOF
 }
 
-# Define output for instance IDs
+
 output "instance_id" {
   value = aws_instance.this[*].id
 }
